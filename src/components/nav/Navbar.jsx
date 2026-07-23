@@ -6,6 +6,9 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => {
 const [menuOpen, setMenuOpen] = useState(false)
+const navigate = useNavigate()
+const location = useLocation()
+const [sticky, setSticky] = useState(false)
 
 const handleNavClick = (sectionId) => {
     setMenuOpen(false)
@@ -15,8 +18,17 @@ const handleNavClick = (sectionId) => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+useEffect(() => {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <nav>
+    <nav className={sticky ? 'blur-nav' : ''} >
       <ul>
         <li>
         <span onClick={() => handleNavClick('hero')}>Home</span>
