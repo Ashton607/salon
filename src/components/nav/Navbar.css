@@ -49,6 +49,6 @@ nav li a {
 /* ------------------sticky navbar------------------ */
 .blur-nav {
   backdrop-filter: blur(10px);
-  background: #0000001a;
+  background: #00000057;
   transition: ease-in-out 0.5s;
 }

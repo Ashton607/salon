@@ -58,21 +58,20 @@
   width: 50%;
 }
 
+
+/*Services image and call to action*/
 .services-container {
   margin-left: -25%;
   margin-top: 5%;
 }
-
-
 .service-row {
   display: flex;
   max-width: 950px;
   margin: 0 auto 40px;
 }
-
 .services-left {
   flex: 0 0 auto;
-  width: 480px;
+  width: 500px;
   height: 420px;
 }
 
@@ -84,7 +83,7 @@
 
 .services-right {
   flex: 0 0 auto;
-  width: 480px;
+  width: 520px;
   height: 320px;
   margin-top: 5%;
   margin-left: -3%;
@@ -108,6 +107,7 @@
   font-size: 15px;
   margin: 0 0 12px;
   color: #E8DCCF;
+  word-spacing: 0.13rem;
 }
 
 .read-more {
@@ -130,4 +130,24 @@
   text-decoration: none;
   font-size: 14px;
   align-self: flex-start;
+}
+
+/*Expand*/
+.expand-btn {
+  display: block;
+  margin: 32px auto 0;
+  background-color: transparent;
+  border: 1px solid #2B1F1A;
+  color: #2B1F1A;
+  padding: 8px 15px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.expand-btn:hover {
+  background-color: #2B1F1A;
+  color: #F5EDE4;
 }
