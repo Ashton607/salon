@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import './App.css'
 import Navbar from './components/nav/Navbar';
 import Hero from './components/hero/Hero';
+import Services from './components/services/Services';
 
 
 
@@ -20,6 +21,7 @@ useEffect(() => {
   return(
     <>
     <Hero/>
+    <Services/>
     </>
   )
 }
