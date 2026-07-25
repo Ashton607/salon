@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from './components/nav/Navbar';
 import Hero from './components/hero/Hero';
 import Services from './components/services/Services';
+import AboutUs from './components/about/AboutUs';
 
 
 
@@ -31,6 +32,7 @@ return (
     <Navbar/>
     <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="about" element={<AboutUs />} />
     </Routes>
    </Router>
   )
