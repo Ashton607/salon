@@ -6,6 +6,7 @@ import s3 from '../../assets/services3.jpg'
 import s4 from '../../assets/services4.png'
 import s5 from '../../assets/services5.png'
 import s6 from '../../assets/services6.png'
+import { IoIosArrowDown } from 'react-icons/io'
 
 const Services = () => {
   const [showMore, setShowMore] = useState(false)
@@ -114,7 +115,8 @@ const Services = () => {
         </section>
 
         <button className="expand-btn" onClick={() => setShowMore(!showMore)}>
-          {showMore ? 'Show Less' : 'Show More'}
+        {showMore ? 'Show Less' : 'Show More'}
+        <IoIosArrowDown className={`expand-icon ${showMore ? 'rotated' : ''}`} />
         </button>
 
       </div>

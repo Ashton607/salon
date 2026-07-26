@@ -132,22 +132,29 @@
   align-self: flex-start;
 }
 
-/*Expand*/
+/*Expand button*/
 .expand-btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 32px auto 0;
   background-color: transparent;
-  border: 1px solid #2B1F1A;
+  border: none;
   color: #2B1F1A;
   padding: 8px 15px;
   font-size: 14px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: ease-in-out 0.9s;
 }
-
 .expand-btn:hover {
-  background-color: #2B1F1A;
-  color: #F5EDE4;
+  transform: scale(1.05);
+  transition: ease-in-out 0.3s;
+}
+.expand-icon {
+  transition: transform 0.2s ease;
+}
+.expand-icon.rotated {
+  transform: rotate(180deg);
 }
