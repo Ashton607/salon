@@ -40,7 +40,7 @@ useEffect(() => {
         <RouterLink to="/about" onClick={() => setMenuOpen(false)}>About Us</RouterLink>
         </li>
         <li>
-        <span onClick={() => handleNavClick('services')}>Book Online</span>
+        <span onClick={() => handleNavClick('booking')}>Book Online</span>
         </li>
         <li>
         <span onClick={() => handleNavClick('contact')}>Contact</span>

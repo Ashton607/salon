@@ -7,6 +7,7 @@ import Services from './components/services/Services';
 import AboutUs from './components/about/AboutUs';
 import Team from './components/team/Team';
 import Testimonials from './components/testimonial/Testimonials';
+import Booking from './components/booking/Booking';
 
 
 
@@ -26,6 +27,7 @@ useEffect(() => {
     <Hero/>
     <Services/>
     <Testimonials/>
+    <Booking/>
     </>
   )
 }
