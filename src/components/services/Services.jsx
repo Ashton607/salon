@@ -7,6 +7,7 @@ import s4 from '../../assets/services4.png'
 import s5 from '../../assets/services5.png'
 import s6 from '../../assets/services6.png'
 import { IoIosArrowDown } from 'react-icons/io'
+import {Link} from 'react-scroll'
 
 const Services = () => {
 const [showMore, setShowMore] = useState(false)
@@ -37,7 +38,11 @@ const [showMore, setShowMore] = useState(false)
               Timeless and versatile for any hair length.</p>
               <p>35 min</p>
               <p>R 250</p>
-              <a  className="book-btn">Book Now</a>
+              <span className="book-btn">
+              <Link to="booking"smooth={true} offset={-70} duration={500}>
+              Book Now
+              </Link>
+              </span>
             </div>
           </div>
 
@@ -50,7 +55,11 @@ const [showMore, setShowMore] = useState(false)
               <p>Relaxed, tousled waves that give a natural, effortless look. Popular for its low-maintenance, romantic vibe.</p>
               <p>45 min</p>
               <p>R 200</p>
-              <a className="book-btn">Book Now</a>
+              <span className="book-btn">
+              <Link to="booking"smooth={true} offset={-70} duration={500}>
+              Book Now
+              </Link>
+              </span>
             </div>
           </div>
 
@@ -65,7 +74,11 @@ const [showMore, setShowMore] = useState(false)
               volume.</p>
               <p>1 hr 30 min</p>
               <p>R 350</p>
-              <a href="#" className="book-btn">Book Now</a>
+              <span className="book-btn">
+              <Link to="booking"smooth={true} offset={-70} duration={500}>
+              Book Now
+              </Link>
+              </span>
             </div>
           </div>
 
@@ -81,7 +94,11 @@ const [showMore, setShowMore] = useState(false)
                   <p>A complete nail treatment including shaping, cuticle care, hand massage, and polish application. Leaves nails neat, healthy, and beautifully finished.</p>
                   <p>50 min</p>
                   <p>From  R150</p>
-                  <a href="#" className="book-btn">Book Now</a>
+                  <span className="book-btn">
+                  <Link to="booking"smooth={true} offset={-70} duration={500}>
+                   Book Now
+                  </Link>
+                  </span>
                 </div>
               </div>
 
@@ -94,7 +111,11 @@ const [showMore, setShowMore] = useState(false)
                   <p>A relaxing foot treatment including nail shaping, cuticle care, callus removal, foot massage, and polish application. Leaves feet soft, refreshed, and perfectly groomed.</p>
                   <p>25 min</p>
                   <p>From  R180</p>
-                  <a href="#" className="book-btn">Book Now</a>
+                  <span className="book-btn">
+                  <Link to="booking"smooth={true} offset={-70} duration={500}>
+                   Book Now
+                  </Link>
+                  </span>
                 </div>
               </div>
 
@@ -107,7 +128,11 @@ const [showMore, setShowMore] = useState(false)
                   <p>Custom hand-painted or embellished designs added to your manicure or pedicure, from subtle accents to intricate patterns. A creative way to personalize your look.</p>
                   <p>40 min</p>
                   <p>From  R100</p>
-                  <a href="#" className="book-btn">Book Now</a>
+                  <span className="book-btn">
+                  <Link to="booking"smooth={true} offset={-70} duration={500}>
+                   Book Now
+                  </Link>
+                  </span>
                 </div>
               </div>
             </>
