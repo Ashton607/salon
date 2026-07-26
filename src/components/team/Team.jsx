@@ -44,21 +44,23 @@ const Team = () => {
     to giving you a relaxing, personalized salon experience.</p>
 
      <div className="team-cards">
-      {teamMembers.map((member, index) => (
-        <div className="team-card" key={index}>
-          <img src={member.img} alt={member.name} className="team-photo" />
-          <div className="team-info">
-            <h3>{member.name}</h3>
-            <p>{member.role}</p>
-            <div className="team-socials">
-              <a href="#"><FaLinkedinIn /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaTwitter /></a>
-            </div>
-          </div>
+  {teamMembers.map((member, index) => (
+    <div className="team-card" key={index}>
+      <img src={member.img} alt={member.name} className="team-photo" />
+      <div className="team-overlay"></div>
+      <div className="team-info">
+        <h3>{member.name}</h3>
+        <p>{member.role}</p>
+        <div className="team-socials">
+          <a href="#"><FaLinkedinIn /></a>
+          <a href="#"><FaInstagram /></a>
+          <a href="#"><FaTwitter /></a>
         </div>
-      ))}
+      </div>
     </div>
+  ))}
+</div>
+
     </div>
       
     </div>

@@ -12,7 +12,7 @@ const Services = () => {
   const [showMore, setShowMore] = useState(false)
 
   return (
-    <div className='Services'>
+    <div className='Services' id='services'>
       <div className="services-content">
         <span className="services-badge">our services</span>
         <h1 className="services-title">
