@@ -9,7 +9,8 @@ import s6 from '../../assets/services6.png'
 import { IoIosArrowDown } from 'react-icons/io'
 
 const Services = () => {
-  const [showMore, setShowMore] = useState(false)
+const [showMore, setShowMore] = useState(false)
+
 
   return (
     <div className='Services' id='services'>
@@ -36,7 +37,7 @@ const Services = () => {
               Timeless and versatile for any hair length.</p>
               <p>35 min</p>
               <p>R 250</p>
-              <a href="#" className="book-btn">Book Now</a>
+              <a  className="book-btn">Book Now</a>
             </div>
           </div>
 
@@ -49,7 +50,7 @@ const Services = () => {
               <p>Relaxed, tousled waves that give a natural, effortless look. Popular for its low-maintenance, romantic vibe.</p>
               <p>45 min</p>
               <p>R 200</p>
-              <a href="#" className="book-btn">Book Now</a>
+              <a className="book-btn">Book Now</a>
             </div>
           </div>
 

@@ -142,6 +142,7 @@
   text-decoration: none;
   font-size: 14px;
   align-self: flex-start;
+  cursor: pointer;
 }
 
 /*Expand button*/

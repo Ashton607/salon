@@ -13,6 +13,7 @@ const Booking = () => {
     <p className="booking-subtitle">Ready for a fresh new look? Reserve your spot online in seconds. Select your preferred 
         hair styling or nail treatment, pick a date and time that fits your schedule, and let 
         our stylists take care of the rest.</p>
+    
     </div>
     </div>
   )
