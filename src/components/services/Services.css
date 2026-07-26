@@ -2,9 +2,21 @@
   padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
-  margin-top: 0.5%;
   width: 100%;
   background-color: #FBE1CC;
+  overflow: visible; /* important - don't clip children */
+}
+.services-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0; /* removes inline svg gap */
+}
+.services-wave svg {
+  width: 100%;
+  height: 100px;
+  display: block;
 }
 .services-content{
   display: flex;
@@ -146,10 +158,10 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: ease-in-out 0.9s;
+  transition: ease-in-out 0.7s;
 }
 .expand-btn:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   transition: ease-in-out 0.3s;
 }
 .expand-icon {
