@@ -5,6 +5,7 @@ import Navbar from './components/nav/Navbar';
 import Hero from './components/hero/Hero';
 import Services from './components/services/Services';
 import AboutUs from './components/about/AboutUs';
+import Team from './components/team/Team';
 
 
 
@@ -33,6 +34,7 @@ return (
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="about" element={<AboutUs />} />
+    <Route path="team" element={<Team />} />
     </Routes>
    </Router>
   )
