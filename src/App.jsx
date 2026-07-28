@@ -10,6 +10,7 @@ import Testimonials from './components/testimonial/Testimonials';
 import Booking from './components/booking/Booking';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
+import ScrollToTop from './ScrollToTop';
 
 
 
@@ -37,6 +38,7 @@ useEffect(() => {
 function App() {
 return (
    <Router>
+    <ScrollToTop/>
     <Navbar/>
     <Routes>
     <Route path="/" element={<Home />} />
