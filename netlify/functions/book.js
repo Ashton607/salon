@@ -1,7 +1,7 @@
 import { checkAvailability, createBooking } from './calendarService.js'
 
 export const handler = async (event) => {
-  const { serviceName, clientName, clientEmail, startTime, endTime } = JSON.parse(event.body)
+  const { serviceName, clientName, clientNumber, startTime, endTime } = JSON.parse(event.body)
 
   try {
     const isFree = await checkAvailability(startTime, endTime)
@@ -12,7 +12,7 @@ export const handler = async (event) => {
       }
     }
 
-    const result = await createBooking({ serviceName, clientName, clientEmail, startTime, endTime })
+    const result = await createBooking({ serviceName, clientName, clientNumber, startTime, endTime })
 
     return {
       statusCode: 200,

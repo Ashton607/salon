@@ -23,20 +23,18 @@ export async function checkAvailability(startTime, endTime) {
     return res.data.calendars[CALENDAR_ID].busy.length === 0
   } catch (err) {
     console.error('Calendar API error:', err.message)
-    console.error('Full error:', JSON.stringify(err, null, 2))
     throw err
   }
 }
 
-export async function createBooking({ serviceName, clientName, clientEmail, startTime, endTime }) {
+export async function createBooking({ serviceName, clientName, clientNumber, startTime, endTime }) {
   const res = await calendar.events.insert({
     calendarId: CALENDAR_ID,
     requestBody: {
       summary: `${serviceName} - ${clientName}`,
-      description: `Booked by ${clientName} (${clientEmail})`,
+      description: `Booked by ${clientName} (${clientNumber})`,
       start: { dateTime: startTime, timeZone: 'Africa/Johannesburg' },
       end: { dateTime: endTime, timeZone: 'Africa/Johannesburg' }
-      // attendees removed - service accounts can't invite without Workspace domain delegation
     }
   })
   return res.data

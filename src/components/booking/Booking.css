@@ -1,69 +1,13 @@
-.Booking{
-  padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.5%;
-  width: 100%;
-  background-color: #6B4A38;
-}
-.booking-content{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.booking-badge{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #FBE1CC 0%, #6B4A38 40%, #2B1F1A 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  white-space: nowrap;
-}
-.booking-badge::before {
-  content: '';
-  flex-shrink: 0;
-  width: 32px;
-  height: 1px;
-  background-color: #FBE1CC;
-}
-.booking-title{
-  font-size: clamp(2.8rem, 6vw, 4rem);
-  font-weight: 400;
-  line-height: 1.15;
-  color: #080808;
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-.booking-title .line1 {
-  display: block;
-  color: #FBE1CC;
-}
-.booking-title .line2 {
-  background: linear-gradient(135deg, #d6af9d, #fdcef5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.booking-subtitle{
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #f0d5c9;
-  width: 50%;
-}
 /*Booking*/
 .booking-availability {
   display: flex;
   gap: 40px;
   padding: 3rem;
+  background-color: #6B5A4E;
+  margin-top: 0.5%;
 }
 
+/*Calendar*/
 .booking-calendar {
   flex: 1.4;
 }
@@ -104,7 +48,7 @@
 
 .month-label {
   font-weight: 600;
-  color: #d6af9d
+  color: #d6af9d;
 }
 
 .calendar-grid {
@@ -124,7 +68,7 @@
   position: relative;
   padding: 10px 0;
   font-size: 0.9rem;
-  color: #d6af9d;
+  color: #d8a68f;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -134,17 +78,17 @@
 }
 
 .day-cell.past {
-  color: #D4C9BC;
+  color: #d4c9bc3b;
   cursor: not-allowed;
 }
 
 .day-cell.selected {
-  background-color: #6B5A4E;
+  background-color: #412f23;
   color: #FFFFFF;
 }
 
 .day-cell:not(.past):not(.empty):hover {
-  background-color: #4e41326b;
+  background-color: #412f23;
 }
 
 .availability-dot {
@@ -162,9 +106,10 @@
   background-color: #FFFFFF;
 }
 
+/*Time*/
 .booking-times {
   flex: 1.4;
-  border-left: 1px solid #E5DED5;
+  border-left: 1px solid #d6af9d;
   padding-left: 40px;
 }
 
@@ -184,7 +129,7 @@
   padding: 12px 0;
   border: 1px solid #4b4b468c;
   background: #1d1c1c17;
-  color: #dbb8aa;
+  color: #d6af9d;
   font-size: 0.9rem;
   cursor: pointer;
   border-radius: 4px;
@@ -198,7 +143,7 @@
 .time-slot.active {
   background-color: #6B5A4E;
   color: #FFFFFF;
-  border-color: #6B5A4E;
+  border-color: #d6af9d;
 }
 
 .show-all {
@@ -211,10 +156,11 @@
   cursor: pointer;
 }
 
+/*Booking Information*/
 .booking-details {
   flex: 1;
   padding-left: 40px;
-  border-left: 1px solid #E5DED5;
+  border-left: 1px solid #d6af9d;
 }
 
 .booking-details h4 {
@@ -251,7 +197,7 @@
   width: 100%;
   margin-top: 24px;
   padding: 14px 0;
-  background-color: #6B5A4E;
+  background-color: #4A342A;
   color: #FFFFFF;
   border: none;
   font-size: 0.95rem;
@@ -261,22 +207,23 @@
 }
 
 .next-btn:hover {
-  background-color: #4A342A;
+  background-color: #664a3d;
 }
 
 .booking-input {
   width: 100%;
   padding: 10px 12px;
   margin-bottom: 10px;
-  border: 1px solid #D4C9BC;
   border-radius: 4px;
   font-size: 0.9rem;
-  color: #2B1F1A;
+  color: #D4C9BC;
+  background-color: #4A342A;
+  border: none;
 }
 
 .booking-input:focus {
   outline: none;
-  border-color: #6B5A4E;
+  border: 1px solid #D4C9BC;
 }
 
 .error-msg {
@@ -313,4 +260,76 @@
 .booking-confirmation p {
   color: #6B5A4E;
   margin-bottom: 8px;
+}
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6B5A4E;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+.form-label:first-child {
+  margin-top: 0;
+}
+
+select.booking-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #ece1d4;
+  background-color: #4A342A;
+}
+
+/*Receipt*/
+.booking-receipt {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.booking-receipt h3 {
+  font-size: 1.5rem;
+  color: #3D6B4A;
+  margin-bottom: 24px;
+  background-color: #E3F0E5;
+  border: 1px solid rgba(61, 107, 74, 0.3);
+  border-radius: 6px;
+}
+
+.receipt-box {
+  border: 1px solid #E5DED5;
+  border-radius: 6px;
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0EAE0;
+  font-size: 0.9rem;
+  color: #4A342A;
+}
+
+.receipt-row span:first-child {
+  color: #8A7A6D;
+}
+
+.receipt-row.total {
+  border-bottom: none;
+  font-weight: 700;
+  color: #2B1F1A;
+  font-size: 1rem;
+  padding-top: 14px;
+}
+
+.receipt-note {
+  margin-top: 20px;
+  color: #6B5A4E;
+  font-size: 0.9rem;
 }
