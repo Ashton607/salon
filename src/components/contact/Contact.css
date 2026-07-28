@@ -90,7 +90,6 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #6b6b6b;
   border-bottom: 2px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -99,24 +98,14 @@
   color: #b0b0b0;
 }
 
-.contact-tab-btn.active.orange {
-  color: #C97A3A;
-  border-bottom-color: #C97A3A;
-}
-
-.contact-tab-btn.active.green {
-  color: #22c55e;
-  border-bottom-color: #22c55e;
-}
-
-.contact-tab-btn.active.blue {
-  color: #3b82f6;
-  border-bottom-color: #3b82f6;
-}
-
 .contact-tab-btn.active.pink {
-  color: #C97A3A;
-  border-bottom-color: #C97A3A;
+  color: #e7b0a2;
+  border-bottom-color: #e7a291;
+}
+
+.contact-tab-btn.active.brown {
+  color: #6B4A38;
+  border-bottom-color: #6B4A38;
 }
 
 /* ---------- Form ---------- */
@@ -167,29 +156,19 @@
   border-color: #555; /* fallback */
 }
 
-.contact-form.orange .form-group input:focus,
-.contact-form.orange .form-group textarea:focus {
-  border-color: #C97A3A;
-}
-
-.contact-form.green .form-group input:focus,
-.contact-form.green .form-group textarea:focus {
-  border-color: #22c55e;
-}
-
-.contact-form.blue .form-group input:focus,
-.contact-form.blue .form-group textarea:focus {
-  border-color: #3b82f6;
+.contact-form.brown .form-group input:focus,
+.contact-form.brown .form-group textarea:focus {
+  border-color: #6B4A38;
 }
 
 .contact-form.pink .form-group input:focus,
 .contact-form.pink .form-group textarea:focus {
-  border-color: #C97A3A;
+  border-color: #e7a291;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #555;
+  color: #8b8b8b;
 }
 
 /* ---------- Submit button ---------- */
@@ -209,22 +188,13 @@
   opacity: 0.85;
 }
 
-.form-submit.orange {
-  background-color: #C97A3A;
+.form-submit.brown {
+  background-color: #6B4A38;
+  color: #ece1d4;
 }
-
-.form-submit.green {
-  background-color: #22c55e;
-}
-
-.form-submit.blue {
-  background-color: #3b82f6;
-  color: #fff;
-}
-
 .form-submit.pink {
-  background-color: #C97A3A;
-  color: #fff;
+  background-color: #be6c57;
+  color: #ffdad1;
 }
 /* ---------- Right: info + map ---------- */
 .contact-right {
@@ -243,8 +213,8 @@
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  border: 1px solid #aaaaaa;
-  background-color: #ebe9e9;
+  border: 1px solid #ad7e69;
+  background: linear-gradient(135deg, #e2b4a1, #fdcef5);
   border-radius: 12px;
   padding: 20px;
 }
@@ -256,8 +226,8 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background-color: rgba(63, 38, 5, 0.12);
-  color: #e98d42;
+  background-color: rgba(63, 38, 5, 0.336);
+  color: #fdcef5;
   flex-shrink: 0;
 }
 
@@ -297,14 +267,13 @@
   height: 200px;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #262626;
+  border: 1px solid #ad7e69;
 }
 
 .info-map iframe {
   display: block;
   width: 100%;
   height: 100%;
-  filter: grayscale(1) invert(0.9) contrast(0.9);
 }
 
 .form-status {

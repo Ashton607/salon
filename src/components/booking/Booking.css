@@ -5,6 +5,7 @@
   padding: 3rem;
   background-color: #6B5A4E;
   margin-top: 0.5%;
+  min-height: 650px;
 }
 
 /*Calendar*/
@@ -227,9 +228,14 @@
 }
 
 .error-msg {
-  color: #B23A3A;
+  background-color: #e4867b;
+  color: #88170a;
+  border: 1px solid #d37166;
   font-size: 0.85rem;
   margin: 8px 0;
+  padding: 3px 0;
+  border-radius: 4px;
+  margin-top: 20px;
 }
 
 .checking-msg {

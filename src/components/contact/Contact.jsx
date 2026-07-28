@@ -5,10 +5,8 @@ import { IoIosMail } from "react-icons/io";
 import emailjs from '@emailjs/browser'
 
 const tabs = [
-  { key: 'printing', label: 'Printing', color: 'green' },
-  { key: 'advertising', label: 'Advertising', color: 'orange' },
-  { key: 'it', label: 'IT', color: 'blue' },
-  { key: 'general', label: 'General Enquiry', color: 'pink' },
+  { key: 'hair', label: 'Hair', color: 'brown' },
+  { key: 'nails', label: 'Nails', color: 'pink' },
 ]
 
 const ContactForm = ({ color, service }) => {
@@ -127,7 +125,7 @@ const infoItems = [
       <FaMapMarkerAlt/>
     ),
     label: 'Address',
-    line1: '15 Barkly Street, Douglas',
+    line1: '65 Schroder St, Upington, 8801',
     line2: 'Ground floor, next to the pharmacy',
   },
   {
@@ -135,15 +133,15 @@ const infoItems = [
       <FaPhoneAlt/>
     ),
     label: 'Phone',
-    line1: '082 657 4330',
-    line2: 'Mon – Sat, 8am – 6pm',
+    line1: '073 390 2528',
+    line2: 'Contact us directly',
   },
   {
     icon: (
       <IoIosMail/>
     ),
     label: 'Email',
-    line1: 'pctriodouglas@gmail.com',
+    line1: 'westyle@gmail.com',
     line2: 'We reply within a few hours',
   },
   {
@@ -151,13 +149,13 @@ const infoItems = [
       <FaClock/>
     ),
     label: 'Hours',
-    line1: 'Mon – Fri: 8am – 6pm',
-    line2: 'Saturday: 9am – 4pm · Closed Sunday',
+    line1: 'Mon – Fri: 8am – 5pm',
+    line2: 'Saturday: 8am – 1pm · Closed Sunday',
   },
 ]
 
 const Contact = () => {
-  const [activeTab, setActiveTab] = useState('printing')
+  const [activeTab, setActiveTab] = useState('hair')
   const currentTab = tabs.find((t) => t.key === activeTab)
 
   return (
@@ -165,13 +163,13 @@ const Contact = () => {
       <div className="contact-content">
         <span className="contact-badge">get in touch</span>
         <h1 className="contact-title">
-          <span className="line1">Get in Touch or</span>
-          <span className="line2">Visit Us in Person.</span>
+          <span className="line1">Connect With Our Team</span>
+          <span className="line2">& Visit Us in Upington</span>
         </h1>
         <p className="contact-subtitle">
-          Whether you want to check our latest copy rates, confirm PC availability, or email your
-          documents over ahead of time for quick printing, we are here to help. Reach out to our
-          friendly Douglas team via phone, WhatsApp, or email.
+          Ready for your fresh set of nails or a complete hair transformation? Get in touch with our 
+          friendly salon team today to check appointment availability, ask about our pricing, 
+          or get map directions straight to our studio in Upington Northern Cape
         </p>
 
         <div className="contact-grid">
@@ -209,8 +207,8 @@ const Contact = () => {
 
             <div className="info-map">
               <iframe
-              title="PC Trio Location"
-              src="https://www.google.com/maps?q=15+Barkly+Street,+Douglas,+8730,+South+Africa&output=embed"
+              title="We Style Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.8594056576726!2d21.251427800000002!3d-28.4536543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c26ad3b788f050b%3A0xcb76602309b70cf7!2sWe%20Style!5e0!3m2!1sen!2sza!4v1785263399988!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

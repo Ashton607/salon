@@ -282,7 +282,7 @@ const Booking = () => {
           />
         </div>
 
-        {status === 'error' && <p className="error-msg">{errorMessage}</p>}
+        
 
         <button
           className="next-btn"
@@ -291,6 +291,7 @@ const Booking = () => {
         >
           {status === 'booking' ? 'Booking...' : 'Confirm Booking'}
         </button>
+        {status === 'error' && <p className="error-msg">{errorMessage}</p>}
       </div>
 
     </div>
