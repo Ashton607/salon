@@ -12,14 +12,20 @@ const calendar = google.calendar({ version: 'v3', auth })
 const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID
 
 export async function checkAvailability(startTime, endTime) {
-  const res = await calendar.freebusy.query({
-    requestBody: {
-      timeMin: startTime,
-      timeMax: endTime,
-      items: [{ id: CALENDAR_ID }]
-    }
-  })
-  return res.data.calendars[CALENDAR_ID].busy.length === 0
+  try {
+    const res = await calendar.freebusy.query({
+      requestBody: {
+        timeMin: startTime,
+        timeMax: endTime,
+        items: [{ id: CALENDAR_ID }]
+      }
+    })
+    return res.data.calendars[CALENDAR_ID].busy.length === 0
+  } catch (err) {
+    console.error('Calendar API error:', err.message)
+    console.error('Full error:', JSON.stringify(err, null, 2))
+    throw err
+  }
 }
 
 export async function createBooking({ serviceName, clientName, clientEmail, startTime, endTime }) {
