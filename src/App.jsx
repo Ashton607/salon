@@ -8,6 +8,7 @@ import AboutUs from './components/about/AboutUs';
 import Team from './components/team/Team';
 import Testimonials from './components/testimonial/Testimonials';
 import Booking from './components/booking/Booking';
+import Contact from './components/contact/Contact';
 
 
 
@@ -28,6 +29,7 @@ useEffect(() => {
     <Services/>
     <Testimonials/>
     <Booking/>
+    <Contact/>
     </>
   )
 }
