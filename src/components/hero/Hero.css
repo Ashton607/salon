@@ -10,6 +10,7 @@
   margin: 0;                     
   padding: 0;                    
 }
+
 .Hero::before {
   content: '';
   position: absolute;
@@ -18,13 +19,15 @@
 }
 
 .hero-content {
-  position: relative;           /* sits above the overlay */
+  position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  padding: 0 20px;
+  text-align: center;
 }
 
 .hero-title {
@@ -33,10 +36,12 @@
   font-size: 4rem;
   margin-top: 5rem;
 }
+
 .line1 {
   color: #cca491;
   font-family: 'Playfair Display', serif;
 }
+
 .line2 {
   font-family: 'Abril Fatface', serif;
   background: linear-gradient(135deg, #b99687, #bd9583);
@@ -45,6 +50,7 @@
   background-clip: text;
   text-align: center;
 }
+
 .hero-subtitle {
   font-size: 1rem;
   font-weight: 400;
@@ -56,9 +62,10 @@
   line-height: 1.8;
   text-align: center;
   margin-top: 1rem;
+  max-width: 600px;
 }
 
-.hero-scroll{
+.hero-scroll {
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
@@ -69,4 +76,94 @@
   margin-top: 50px;
   background: #160d087c;
   cursor: pointer;
+}
+
+
+/* ===== LAPTOP / SMALL DESKTOP (≤1200px) ===== */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+
+/* ===== TABLET (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .Hero {
+    background-attachment: scroll; /* fixed bg can be janky/laggy on tablets */
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    margin-top: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 500px;
+  }
+}
+
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  .Hero {
+    background-attachment: scroll;
+    height: 100svh; /* handles mobile browser UI bars better than 100vh */
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 90%;
+  }
+
+  .hero-scroll {
+    padding: 9px 24px;
+    font-size: 0.8rem;
+    margin-top: 36px;
+  }
+}
+
+
+/* ===== SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    max-width: 95%;
+  }
+
+  .hero-scroll {
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    margin-top: 28px;
+  }
+}
+
+
+/* ===== VERY SMALL / OLDER DEVICES (≤360px) ===== */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .hero-scroll {
+    padding: 7px 16px;
+    font-size: 0.7rem;
+  }
 }

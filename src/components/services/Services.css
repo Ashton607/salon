@@ -171,3 +171,165 @@
 .expand-icon.rotated {
   transform: rotate(180deg);
 }
+
+/* ===== TABLET (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .Services {
+    padding: 3.5rem 2rem;
+  }
+
+  .services-subtitle {
+    width: 70%;
+  }
+
+  .services-container {
+    margin-left: -10%;
+    margin-top: 5%;
+  }
+
+  .service-row {
+    max-width: 100%;
+  }
+
+  .services-left {
+    width: 420px;
+    height: 380px;
+  }
+
+  .services-right {
+    width: 440px;
+    height: 300px;
+    margin-left: -3%;
+  }
+}
+
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  .Services {
+    padding: 3rem 1.5rem;
+  }
+
+  .services-title {
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+  }
+
+  .services-subtitle {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .services-container {
+    margin-left: 0;
+    margin-top: 2.5rem;
+  }
+
+  .service-row {
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 0 32px;
+  }
+
+  .services-left {
+    width: 100%;
+    height: 320px;
+  }
+
+  .services-right {
+    width: 100%;
+    height: auto;
+    min-height: 260px;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 32px 24px;
+  }
+
+  .services-right h3 {
+    font-size: 24px;
+  }
+
+  .services-right p {
+    font-size: 14px;
+  }
+
+  .services-wave svg {
+    height: 60px;
+  }
+}
+
+
+/* ===== SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+  .Services {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .services-badge {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .services-badge::before {
+    width: 22px;
+  }
+
+  .services-title {
+    font-size: clamp(1.8rem, 9vw, 2.2rem);
+  }
+
+  .services-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .services-left {
+    height: 260px;
+  }
+
+  .services-right {
+    padding: 28px 20px;
+    min-height: 240px;
+  }
+
+  .services-right h3 {
+    font-size: 21px;
+  }
+
+  .services-right p {
+    font-size: 13px;
+  }
+
+  .book-btn {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+
+  .expand-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .services-wave svg {
+    height: 40px;
+  }
+}
+
+
+/* ===== VERY SMALL DEVICES (≤360px) ===== */
+@media (max-width: 360px) {
+  .services-title {
+    font-size: 1.6rem;
+  }
+
+  .services-left {
+    height: 220px;
+  }
+
+  .services-right {
+    padding: 24px 16px;
+    min-height: 220px;
+  }
+
+  .services-right h3 {
+    font-size: 19px;
+  }
+}

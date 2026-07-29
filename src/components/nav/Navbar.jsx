@@ -9,6 +9,7 @@ const [menuOpen, setMenuOpen] = useState(false)
 const navigate = useNavigate()
 const location = useLocation()
 const [sticky, setSticky] = useState(false)
+const navRef = useRef(null);
 
 const handleNavClick = (sectionId) => {
     setMenuOpen(false)
@@ -27,9 +28,22 @@ useEffect(() => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+ // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <nav className={sticky ? 'blur-nav' : ''} >
-      <ul>
+    <nav className={sticky ? 'blur-nav' : ''} ref={navRef}>
+      <ul className={menuOpen ? 'show-mobile-menu' : ''}>
         <li>
         <span onClick={() => handleNavClick('hero')}>Home</span>
         </li>
@@ -46,6 +60,16 @@ useEffect(() => {
         <span onClick={() => handleNavClick('contact')}>Contact</span>
         </li>
       </ul>
+      <div
+        className={`menu-icon ${menuOpen ? 'open' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        role="button"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
     </nav>
   )
 }
