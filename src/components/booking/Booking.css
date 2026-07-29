@@ -295,6 +295,8 @@ select.booking-input {
   margin: 0 auto;
   padding: 60px 40px;
   text-align: center;
+  background-color: #faf1ee;
+  border-radius: 4px;
 }
 
 .booking-receipt h3 {
@@ -307,7 +309,7 @@ select.booking-input {
 }
 
 .receipt-box {
-  border: 1px solid #E5DED5;
+  border: 1px solid #a59f98;
   border-radius: 6px;
   padding: 20px 24px;
   text-align: left;
@@ -317,13 +319,13 @@ select.booking-input {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid #F0EAE0;
+  border-bottom: 1px solid #a79d8c;
   font-size: 0.9rem;
   color: #4A342A;
 }
 
 .receipt-row span:first-child {
-  color: #8A7A6D;
+  color: #5a5048;
 }
 
 .receipt-row.total {
@@ -336,7 +338,7 @@ select.booking-input {
 
 .receipt-note {
   margin-top: 20px;
-  color: #6B5A4E;
+  color: #3d352f;
   font-size: 0.9rem;
 }
 

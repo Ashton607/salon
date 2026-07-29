@@ -18,13 +18,13 @@ const Booking = () => {
   const today = new Date()
 
   const [viewYear, setViewYear] = useState(today.getFullYear())
-  const [viewMonth, setViewMonth] = useState(today.getMonth()) // 0-indexed
+  const [viewMonth, setViewMonth] = useState(today.getMonth())
   const [selectedDate, setSelectedDate] = useState(today.getDate())
   const [selectedTime, setSelectedTime] = useState('10:00 am')
   const [clientName, setClientName] = useState('')
   const [clientNumber, setClientNumber] = useState('')
   const [selectedStyle, setSelectedStyle] = useState(hairstyles[0].name)
-  const [status, setStatus] = useState('idle') // idle | checking | booking | success | error
+  const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [receipt, setReceipt] = useState(null)
 
@@ -33,10 +33,9 @@ const Booking = () => {
 
   const isCurrentMonth = viewYear === today.getFullYear() && viewMonth === today.getMonth()
 
-  // Build calendar grid for viewYear/viewMonth
   const buildCalendarDays = () => {
-    const firstDay = new Date(viewYear, viewMonth, 1).getDay() // weekday of 1st
-    const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate() // days in month
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay()
+    const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate()
     const grid = []
     for (let i = 0; i < firstDay; i++) grid.push(null)
     for (let d = 1; d <= totalDays; d++) grid.push(d)
@@ -57,6 +56,7 @@ const Booking = () => {
     } else {
       setViewMonth(viewMonth - 1)
     }
+    setSelectedDate(1)
   }
 
   const goToNextMonth = () => {
@@ -66,38 +66,39 @@ const Booking = () => {
     } else {
       setViewMonth(viewMonth + 1)
     }
+    setSelectedDate(1)
   }
 
+  // Fixed: proper 12-hour format matching am/pm parsing logic below
   const timeSlots = [
     '10:00 am', '10:30 am',
     '11:00 am', '11:30 am',
     '12:00 pm', '12:30 pm',
-    '13:00 pm', '13:30 pm',
-    '14:00 pm', '14:30 pm',
-    '15:00 pm', '15:30 pm',
-    '16:00 pm', '16:30 pm'
+    '1:00 pm', '1:30 pm',
+    '2:00 pm', '2:30 pm',
+    '3:00 pm', '3:30 pm',
+    '4:00 pm', '4:30 pm'
   ]
 
   const buildISOTime = (day, time) => {
-  console.log('buildISOTime called with:', { day, time }) // ADD THIS
+    const [rawTime, meridiem] = time.split(' ')
+    let [hours, minutes] = rawTime.split(':').map(Number)
+    if (meridiem === 'pm' && hours !== 12) hours += 12
+    if (meridiem === 'am' && hours === 12) hours = 0
 
-  const [rawTime, meridiem] = time.split(' ')
-  let [hours, minutes] = rawTime.split(':').map(Number)
-  if (meridiem === 'pm' && hours !== 12) hours += 12
-  if (meridiem === 'am' && hours === 12) hours = 0
+    const paddedMonth = String(viewMonth + 1).padStart(2, '0')
+    const paddedDay = String(day).padStart(2, '0')
+    const paddedHours = String(hours).padStart(2, '0')
+    const paddedMinutes = String(minutes).padStart(2, '0')
+    const isoString = `${viewYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:00+02:00`
 
-  console.log('parsed hours/minutes:', { hours, minutes, meridiem }) // ADD THIS
+    if (isNaN(new Date(isoString).getTime())) {
+      console.error('Invalid date constructed:', isoString)
+      return null
+    }
 
-  const paddedMonth = String(viewMonth + 1).padStart(2, '0')
-  const paddedDay = String(day).padStart(2, '0')
-  const paddedHours = String(hours).padStart(2, '0')
-  const paddedMinutes = String(minutes).padStart(2, '0')
-  const isoString = `${viewYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:00+02:00`
-
-  console.log('constructed isoString:', isoString) // ADD THIS
-
-  return isoString
-}
+    return isoString
+  }
 
   const addOneHour = (isoString) => {
     const date = new Date(isoString)
@@ -106,18 +107,18 @@ const Booking = () => {
   }
 
   const handleTimeSelect = async (time) => {
-  setSelectedTime(time)
-  setStatus('checking')
-  setErrorMessage('')
+    setSelectedTime(time)
+    setStatus('checking')
+    setErrorMessage('')
 
-  const startTime = buildISOTime(selectedDate, time)
-  if (!startTime) {
-    setErrorMessage('Please select a valid date.')
-    setStatus('error')
-    return
-  }
+    const startTime = buildISOTime(selectedDate, time)
+    if (!startTime) {
+      setErrorMessage('Please select a valid date.')
+      setStatus('error')
+      return
+    }
 
-  const endTime = addOneHour(startTime)
+    const endTime = addOneHour(startTime)
 
     try {
       const res = await fetch('/.netlify/functions/check-availability', {
@@ -150,6 +151,12 @@ const Booking = () => {
     setErrorMessage('')
 
     const startTime = buildISOTime(selectedDate, selectedTime)
+    if (!startTime) {
+      setErrorMessage('Please select a valid date and time.')
+      setStatus('error')
+      return
+    }
+
     const endTime = addOneHour(startTime)
     const style = hairstyles.find((h) => h.name === selectedStyle)
 
@@ -199,7 +206,7 @@ const Booking = () => {
             <div className="receipt-row"><span>Name</span><span>{receipt.name}</span></div>
             <div className="receipt-row"><span>Number</span><span>{receipt.number}</span></div>
             <div className="receipt-row"><span>Hairstyle</span><span>{receipt.style}</span></div>
-            <div className="receipt-row total"><span>Total</span><span>R {receipt.price}</span></div>
+            <div className="receipt-row total"><span>Total</span><span>{receipt.price}</span></div>
           </div>
           <p className="receipt-note">Thanks {receipt.name}, we'll see you then!</p>
         </div>
@@ -296,8 +303,6 @@ const Booking = () => {
             className="booking-input"
           />
         </div>
-
-        
 
         <button
           className="next-btn"
