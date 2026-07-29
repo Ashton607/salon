@@ -87,3 +87,99 @@
 .team:hover .team-icon {
   transform: translateX(4px);
 }
+
+/* ===== TABLET (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .about-content {
+    max-width: 600px;
+    padding: 80px 20px;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  .AboutUs {
+    min-height: 90vh;
+  }
+
+  .about-content {
+    max-width: 100%;
+    padding: 60px 24px;
+  }
+
+  .about-badge {
+    font-size: 12px;
+  }
+
+  .about-title {
+    font-size: 2rem;
+    margin: 14px 0;
+  }
+
+  .about-subtitle {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .team {
+    font-size: 0.8rem;
+    padding: 5px 18px;
+    margin-top: 1.5rem;
+  }
+}
+
+
+/* ===== SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+  .AboutUs {
+    min-height: 85vh;
+  }
+
+  .about-content {
+    padding: 48px 18px;
+  }
+
+  .about-badge {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+  }
+
+  .about-title {
+    font-size: 1.7rem;
+    margin: 12px 0;
+  }
+
+  .about-subtitle {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .team {
+    font-size: 0.75rem;
+    padding: 5px 16px;
+    margin-top: 1.2rem;
+    gap: 5px;
+  }
+}
+
+
+/* ===== VERY SMALL DEVICES (≤360px) ===== */
+@media (max-width: 360px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 12.5px;
+  }
+
+  .team {
+    font-size: 0.7rem;
+    padding: 4px 14px;
+  }
+}
