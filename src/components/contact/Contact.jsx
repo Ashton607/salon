@@ -23,7 +23,7 @@ const ContactForm = ({ color, service }) => {
   }
 
 
-const EMAILJS_SERVICE_ID = 'service_6aa45rb'
+const EMAILJS_SERVICE_ID = 'service_vbwq07d'
 const EMAILJS_TEMPLATE_ID = 'template_ga520lj'
 const EMAILJS_PUBLIC_KEY = '3jMXLV0BYe8ziv1FM'
 
@@ -110,7 +110,7 @@ const handleSubmit = (e) => {
       </button>
 
       {status === 'success' && (
-        <p className="form-status success">Thanks! Your enquiry has been sent. We'll be in touch soon.</p>
+        <p className="form-status success">Your enquiry has been sent. We'll be in touch soon.</p>
       )}
       {status === 'error' && (
         <p className="form-status error">Something went wrong. Please try again or contact us directly.</p>

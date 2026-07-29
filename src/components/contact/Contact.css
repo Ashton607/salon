@@ -280,21 +280,22 @@
   font-size: 14px;
   margin-top: 4px;
   border-radius: 4px;
-  width: 50%;
-  padding: 5px 12px;
-  border: #000000;
 }
 
 .form-status.success {
   background-color: #E3F5E1;
   color: #216624;
   border: 1px solid #85e289;
+  width: 53%;
+  padding: 3px 5px;
 }
 
 .form-status.error {
-  background-color: #FBE2E1;
-  color: #C0392B;
-  border: 1px solid #d37166;
+  background-color: #e77e72;
+  color: #8b1103;
+  border: 1px solid #c25245;
+  width: 65%;
+  padding: 3px 5px;
 }
 
 /* ---------- Large screens (1440px+) ---------- */
