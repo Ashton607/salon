@@ -339,3 +339,186 @@ select.booking-input {
   color: #6B5A4E;
   font-size: 0.9rem;
 }
+
+/* ===== TABLET (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .booking-availability {
+    padding: 2.5rem 2rem;
+    gap: 24px;
+  }
+
+  .booking-times,
+  .booking-details {
+    padding-left: 24px;
+  }
+}
+
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  .booking-availability {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 32px;
+    min-height: unset;
+  }
+
+  .booking-calendar,
+  .booking-times,
+  .booking-details {
+    flex: unset;
+    width: 100%;
+  }
+
+  .booking-times,
+  .booking-details {
+    border-left: none;
+    padding-left: 0;
+    padding-top: 24px;
+    border-top: 1px solid #d6af9d;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .day-cell {
+    padding: 8px 0;
+    font-size: 0.85rem;
+  }
+
+  .day-label {
+    font-size: 0.75rem;
+  }
+
+  .time-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .time-slot {
+    padding: 10px 0;
+    font-size: 0.85rem;
+  }
+
+  .booking-receipt {
+    padding: 40px 24px;
+    max-width: 100%;
+  }
+}
+
+
+/* ===== SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+  .booking-availability {
+    padding: 1.5rem 1.2rem;
+    gap: 24px;
+  }
+
+  .calendar-header h3,
+  .booking-times h4,
+  .booking-details h4 {
+    font-size: 0.95rem;
+  }
+
+  .timezone {
+    font-size: 0.78rem;
+  }
+
+  .day-cell {
+    padding: 7px 0;
+    font-size: 0.8rem;
+  }
+
+  .day-label {
+    font-size: 0.7rem;
+  }
+
+  .time-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .time-slot {
+    padding: 9px 0;
+    font-size: 0.8rem;
+  }
+
+  .booking-input,
+  select.booking-input {
+    padding: 9px 10px;
+    font-size: 0.85rem;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+  }
+
+  .next-btn {
+    padding: 12px 0;
+    font-size: 0.9rem;
+  }
+
+  .service-name {
+    font-size: 0.9rem;
+  }
+
+  .service-price,
+  .service-datetime,
+  .service-staff,
+  .service-duration {
+    font-size: 0.85rem;
+  }
+
+  .booking-receipt {
+    padding: 32px 20px;
+  }
+
+  .booking-receipt h3 {
+    font-size: 1.25rem;
+  }
+
+  .receipt-box {
+    padding: 16px 18px;
+  }
+
+  .receipt-row {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ===== VERY SMALL DEVICES (≤360px) ===== */
+@media (max-width: 360px) {
+  .booking-availability {
+    padding: 1.2rem 1rem;
+  }
+
+  .time-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  .time-slot {
+    padding: 8px 0;
+    font-size: 0.75rem;
+  }
+
+  .day-cell {
+    font-size: 0.75rem;
+  }
+
+  .booking-receipt {
+    padding: 28px 16px;
+  }
+
+  .receipt-row {
+    font-size: 0.8rem;
+  }
+}
