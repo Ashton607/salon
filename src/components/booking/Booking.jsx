@@ -79,10 +79,14 @@ const Booking = () => {
   ]
 
   const buildISOTime = (day, time) => {
+  console.log('buildISOTime called with:', { day, time }) // ADD THIS
+
   const [rawTime, meridiem] = time.split(' ')
   let [hours, minutes] = rawTime.split(':').map(Number)
   if (meridiem === 'pm' && hours !== 12) hours += 12
   if (meridiem === 'am' && hours === 12) hours = 0
+
+  console.log('parsed hours/minutes:', { hours, minutes, meridiem }) // ADD THIS
 
   const paddedMonth = String(viewMonth + 1).padStart(2, '0')
   const paddedDay = String(day).padStart(2, '0')
@@ -90,11 +94,7 @@ const Booking = () => {
   const paddedMinutes = String(minutes).padStart(2, '0')
   const isoString = `${viewYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:00+02:00`
 
-  // validate before returning
-  if (isNaN(new Date(isoString).getTime())) {
-    console.error('Invalid date constructed:', isoString)
-    return null
-  }
+  console.log('constructed isoString:', isoString) // ADD THIS
 
   return isoString
 }
