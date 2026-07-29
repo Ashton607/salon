@@ -79,16 +79,25 @@ const Booking = () => {
   ]
 
   const buildISOTime = (day, time) => {
-    const [rawTime, meridiem] = time.split(' ')
-    let [hours, minutes] = rawTime.split(':').map(Number)
-    if (meridiem === 'pm' && hours !== 12) hours += 12
-    if (meridiem === 'am' && hours === 12) hours = 0
-    const paddedMonth = String(viewMonth + 1).padStart(2, '0')
-    const paddedDay = String(day).padStart(2, '0')
-    const paddedHours = String(hours).padStart(2, '0')
-    const paddedMinutes = String(minutes).padStart(2, '0')
-    return `${viewYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:00+02:00`
+  const [rawTime, meridiem] = time.split(' ')
+  let [hours, minutes] = rawTime.split(':').map(Number)
+  if (meridiem === 'pm' && hours !== 12) hours += 12
+  if (meridiem === 'am' && hours === 12) hours = 0
+
+  const paddedMonth = String(viewMonth + 1).padStart(2, '0')
+  const paddedDay = String(day).padStart(2, '0')
+  const paddedHours = String(hours).padStart(2, '0')
+  const paddedMinutes = String(minutes).padStart(2, '0')
+  const isoString = `${viewYear}-${paddedMonth}-${paddedDay}T${paddedHours}:${paddedMinutes}:00+02:00`
+
+  // validate before returning
+  if (isNaN(new Date(isoString).getTime())) {
+    console.error('Invalid date constructed:', isoString)
+    return null
   }
+
+  return isoString
+}
 
   const addOneHour = (isoString) => {
     const date = new Date(isoString)
@@ -97,12 +106,18 @@ const Booking = () => {
   }
 
   const handleTimeSelect = async (time) => {
-    setSelectedTime(time)
-    setStatus('checking')
-    setErrorMessage('')
+  setSelectedTime(time)
+  setStatus('checking')
+  setErrorMessage('')
 
-    const startTime = buildISOTime(selectedDate, time)
-    const endTime = addOneHour(startTime)
+  const startTime = buildISOTime(selectedDate, time)
+  if (!startTime) {
+    setErrorMessage('Please select a valid date.')
+    setStatus('error')
+    return
+  }
+
+  const endTime = addOneHour(startTime)
 
     try {
       const res = await fetch('/.netlify/functions/check-availability', {
