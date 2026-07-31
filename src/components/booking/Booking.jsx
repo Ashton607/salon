@@ -207,6 +207,7 @@ const Booking = () => {
             <div className="receipt-row"><span>Number</span><span>{receipt.number}</span></div>
             <div className="receipt-row"><span>Hairstyle</span><span>{receipt.style}</span></div>
             <div className="receipt-row total"><span>Total</span><span>{receipt.price}</span></div>
+            <p className="payment-note">Payment due at appointment — cash or card accepted in salon.</p>
           </div>
           <p className="receipt-note">Thanks {receipt.name}, we'll see you then!</p>
         </div>

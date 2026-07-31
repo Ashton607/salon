@@ -341,6 +341,13 @@ select.booking-input {
   color: #3d352f;
   font-size: 0.9rem;
 }
+.payment-note {
+  font-size: 0.8rem;
+  color: #8A7A6D;
+  text-align: center;
+  margin-top: 12px;
+  font-style: italic;
+}
 
 /* ===== TABLET (≤1024px) ===== */
 @media (max-width: 1024px) {
