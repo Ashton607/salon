@@ -33,6 +33,7 @@ const Booking = () => {
 
   const isCurrentMonth = viewYear === today.getFullYear() && viewMonth === today.getMonth()
 
+  //New function to build the calendar grid for the current view month
   const buildCalendarDays = () => {
     const firstDay = new Date(viewYear, viewMonth, 1).getDay()
     const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate()
@@ -44,11 +45,13 @@ const Booking = () => {
 
   const calendarDays = buildCalendarDays()
 
+  // New function to check if a day is in the past
   const isPastDay = (day) => {
     if (!isCurrentMonth) return viewYear < today.getFullYear() || (viewYear === today.getFullYear() && viewMonth < today.getMonth())
     return day < today.getDate()
   }
 
+  // New functions to navigate months
   const goToPrevMonth = () => {
     if (viewMonth === 0) {
       setViewMonth(11)
@@ -59,6 +62,7 @@ const Booking = () => {
     setSelectedDate(1)
   }
 
+  //proper 12-hour format matching am/pm parsing logic below
   const goToNextMonth = () => {
     if (viewMonth === 11) {
       setViewMonth(0)
@@ -80,6 +84,7 @@ const Booking = () => {
     '4:00 pm', '4:30 pm'
   ]
 
+  // New function to build ISO string for selected date and time
   const buildISOTime = (day, time) => {
     const [rawTime, meridiem] = time.split(' ')
     let [hours, minutes] = rawTime.split(':').map(Number)
@@ -100,12 +105,14 @@ const Booking = () => {
     return isoString
   }
 
+  // New function to add one hour to an ISO string
   const addOneHour = (isoString) => {
     const date = new Date(isoString)
     date.setHours(date.getHours() + 1)
     return date.toISOString().replace('Z', '+00:00')
   }
 
+  // New function to handle time selection and availability check
   const handleTimeSelect = async (time) => {
     setSelectedTime(time)
     setStatus('checking')
@@ -140,6 +147,7 @@ const Booking = () => {
     }
   }
 
+  // New function to handle booking
   const handleBooking = async () => {
     if (!clientName || !clientNumber) {
       setErrorMessage('Please enter your name and number.')
@@ -194,6 +202,47 @@ const Booking = () => {
       setStatus('error')
     }
   }
+
+  // New function to handle payment
+  const handlePayment = async () => {
+  if (!clientName || !clientNumber) {
+    setErrorMessage('Please enter your name and number.')
+    setStatus('error')
+    return
+  }
+
+  setStatus('booking')
+  setErrorMessage('')
+
+  const style = hairstyles.find((h) => h.name === selectedStyle)
+  const priceNumber = parseFloat(style.price.replace('R', ''))
+
+  try {
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: priceNumber,
+        clientName,
+        clientNumber,
+        serviceName: style.name
+      })
+    })
+    const data = await res.json()
+
+    if (!res.ok) {
+      setErrorMessage(data.error || 'Could not start payment.')
+      setStatus('error')
+      return
+    }
+
+    // Redirect the browser to Yoco's hosted payment page
+    window.location.href = data.redirectUrl
+  } catch (err) {
+    setErrorMessage('Could not start payment. Please try again.')
+    setStatus('error')
+  }
+}
 
   if (status === 'success' && receipt) {
     return (
@@ -272,21 +321,7 @@ const Booking = () => {
       <div className="booking-details">
         <h4>Your Details</h4>
 
-        <div className="booking-form">
-          <label className="form-label">Hairstyle</label>
-          <select
-            className="booking-input"
-            value={selectedStyle}
-            onChange={(e) => setSelectedStyle(e.target.value)}
-          >
-            {hairstyles.map((h) => (
-              <option key={h.name} value={h.name}>
-                {h.name}  {h.price}
-              </option>
-            ))}
-          </select>
-
-          <label className="form-label">Name</label>
+        <label className="form-label">Name</label>
           <input
             type="text"
             placeholder="Your Name"
@@ -303,11 +338,30 @@ const Booking = () => {
             onChange={(e) => setClientNumber(e.target.value)}
             className="booking-input"
           />
+          
+        <div className="booking-form">
+          <label className="form-label">Hairstyle
+          <select
+            className="booking-input"
+            value={selectedStyle}
+            onChange={(e) => setSelectedStyle(e.target.value)}
+          >
+            {hairstyles.map((h) => (
+              <option key={h.name} value={h.name}>
+                {h.name} 
+              </option>
+            ))}
+          </select>
+          
+          </label>
+          <span className="style-price">{hairstyles.find((h) => h.name === selectedStyle)?.price}</span>
+
+          
         </div>
 
         <button
           className="next-btn"
-          onClick={handleBooking}
+          onClick={handlePayment}
           disabled={status === 'booking'}
         >
           {status === 'booking' ? 'Booking...' : 'Confirm Booking'}

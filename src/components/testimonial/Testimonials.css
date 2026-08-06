@@ -43,8 +43,10 @@
 .testimonials-title .line1 {
   display: block;
   color: #080808;
+  font-family: 'Playfair Display', serif;
 }
 .testimonials-title .line2 {
+  font-family: 'Abril Fatface', serif;
   background: linear-gradient(135deg, #5C3A22 0%, #8B5A34 40%, #3D2517 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

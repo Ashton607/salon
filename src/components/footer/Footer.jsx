@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="footer-top">
 
         <div className="footer-brand">
-          <h2 className="footer-logo">We Style</h2>
+          <h2 className="footer-logo">Duwayne's Hair & Beauty Salon</h2>
           <p className="footer-tagline">
-            Your local hair & nail beauty experts in Upington, Northern Cape.
+            Your local hair & nail beauty experts in Kimberley, Northern Cape.
           </p>
           <div className="footer-socials">
             <a href="#" aria-label="Instagram"><FaInstagram /></a>
@@ -48,7 +48,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} We Style. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Duwayne's Hair & Beauty Salon. All rights reserved.</p>
         <div className="footer-legal">
           <a href="#">Privacy Policy</a>
           <span className="divider">|</span>

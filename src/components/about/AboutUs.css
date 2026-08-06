@@ -52,8 +52,10 @@
 }
 .about-title .line1{
   display: block;
+  font-family: 'Playfair Display', serif;
 }
 .about-title .line2{
+  font-family: 'Abril Fatface', serif;
   background: linear-gradient(135deg, #a37561, #fdcef5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

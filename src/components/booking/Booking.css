@@ -107,7 +107,7 @@
   background-color: #FFFFFF;
 }
 
-/*Time*/
+/*Booking Times*/
 .booking-times {
   flex: 1.4;
   border-left: 1px solid #d6af9d;
@@ -116,7 +116,7 @@
 
 .booking-times h4 {
   font-size: 1rem;
-  color: #e2c3b5;
+  color: #d6af9d;
   margin: 0 0 20px;
 }
 
@@ -159,17 +159,88 @@
 
 /*Booking Information*/
 .booking-details {
-  flex: 1;
-  padding-left: 40px;
+  flex: 1.4;
   border-left: 1px solid #d6af9d;
+  padding-left: 40px;
 }
 
 .booking-details h4 {
-  font-size: 1rem;
-  color: #e2c3b5;
-  padding-bottom: 12px;
-  margin: 0 0 16px;
+  color: #d6af9d;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-bottom: 8px;
 }
+
+/* Base form labels */
+.form-label {
+  display: flex;
+  flex-direction: column;
+  color: #ece1d4;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  gap: 6px;
+}
+
+
+.booking-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(236, 225, 212, 0.4);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ece1d4;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, outline 0.2s ease;
+}
+
+.booking-input::placeholder {
+  color: rgba(236, 225, 212, 0.5);
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #ece1d4;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+select.booking-input option {
+  background-color: #4A342A;
+  color: #ece1d4;
+}
+
+
+.booking-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.booking-form .form-label {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.style-price {
+  color: #ece1d4;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 14px;
+  background-color: rgba(236, 225, 212, 0.12);
+  border: 1px solid rgba(236, 225, 212, 0.3);
+  border-radius: 4px;
+  white-space: nowrap;
+  height: 42px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+} 
 
 .service-name {
   font-weight: 600;
@@ -209,22 +280,6 @@
 
 .next-btn:hover {
   background-color: #664a3d;
-}
-
-.booking-input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: #D4C9BC;
-  background-color: #4A342A;
-  border: none;
-}
-
-.booking-input:focus {
-  outline: none;
-  border: 1px solid #D4C9BC;
 }
 
 .error-msg {
@@ -279,14 +334,7 @@
   margin-top: 0;
 }
 
-select.booking-input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: #ece1d4;
-  background-color: #4A342A;
-}
+
 
 /*Receipt*/
 .booking-receipt {
@@ -348,6 +396,7 @@ select.booking-input {
   margin-top: 12px;
   font-style: italic;
 }
+
 
 /* ===== TABLET (≤1024px) ===== */
 @media (max-width: 1024px) {

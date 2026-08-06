@@ -125,7 +125,7 @@ const infoItems = [
       <FaMapMarkerAlt/>
     ),
     label: 'Address',
-    line1: '65 Schroder St, Upington, 8801',
+    line1: '65 Schroder St, Kimberley, 8730',
     line2: 'Ground floor, next to the pharmacy',
   },
   {
@@ -141,7 +141,7 @@ const infoItems = [
       <IoIosMail/>
     ),
     label: 'Email',
-    line1: 'westyle@gmail.com',
+    line1: 'duwayne@gmail.com',
     line2: 'We reply within a few hours',
   },
   {
@@ -163,13 +163,13 @@ const Contact = () => {
       <div className="contact-content">
         <span className="contact-badge">get in touch</span>
         <h1 className="contact-title">
-          <span className="line1">Connect With Our Team</span>
-          <span className="line2">& Visit Us in Upington</span>
+          <span className="line1">Get in Touch.</span>
+          <span className="line2">With Your Local Stylist in Kimberley</span>
         </h1>
         <p className="contact-subtitle">
-          Ready for your fresh set of nails or a complete hair transformation? Get in touch with our 
-          friendly salon team today to check appointment availability, ask about our pricing, 
-          or get map directions straight to our studio in Upington Northern Cape
+          Whether you need advice on a new hair color, a quick cut, or custom nail art, 
+          I’m here to help you look and feel your absolute best. Contact my salon in Kimberley Nothern Cape 
+          today to discuss your ideas and enquiries.
         </p>
 
         <div className="contact-grid">
