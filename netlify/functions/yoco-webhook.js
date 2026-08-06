@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import { checkAvailability, createBooking } from './calendarService.js'
 
 export const handler = async (event) => {
   const signatureHeader = event.headers['webhook-signature']
@@ -18,21 +19,45 @@ export const handler = async (event) => {
     const receivedSignature = signatureHeader.split(' ')[0].split(',')[1]
 
     if (expectedSignature !== receivedSignature) {
+      console.error('Webhook signature mismatch')
       return { statusCode: 401, body: 'Invalid signature' }
     }
 
     const payload = JSON.parse(rawBody)
+    console.log('Webhook received, type:', payload.type)
 
     if (payload.type === 'payment.succeeded') {
-      const { metadata, amount } = payload.payload
-      // Payment confirmed — now safe to actually create the Google Calendar booking
-      // (call your existing createBooking() from calendarService.js here)
-      console.log('Payment confirmed for:', metadata.clientName, amount)
+      const { metadata } = payload.payload
+
+      if (!metadata || !metadata.startTime || !metadata.endTime) {
+        console.error('Missing booking metadata on payment:', metadata)
+        return { statusCode: 200, body: 'OK - but missing metadata' }
+      }
+
+      const { clientName, clientNumber, serviceName, startTime, endTime } = metadata
+
+      // Double-check the slot is still free before booking
+      const isFree = await checkAvailability(startTime, endTime)
+
+      if (!isFree) {
+        console.error('Slot no longer available at webhook time:', startTime)
+        // In a real production setup you'd want to trigger a refund here
+        // and/or notify the owner that a conflict occurred.
+        return { statusCode: 200, body: 'OK - slot conflict, needs manual review' }
+      }
+
+      const result = await createBooking({
+        serviceName,
+        clientName,
+        clientNumber,
+        startTime,
+        endTime
+      })
+
+      console.log('Booking created from webhook:', result.id)
     }
 
     return { statusCode: 200, body: 'OK' }
-    const result = await createBooking({ serviceName, clientName, clientNumber, startTime, endTime })
-    
   } catch (err) {
     console.error('Webhook error:', err.message)
     return { statusCode: 500, body: 'Webhook processing failed' }

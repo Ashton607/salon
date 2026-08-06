@@ -2,7 +2,8 @@ export const handler = async (event) => {
   const { amount, clientName, clientNumber, serviceName, startTime, endTime } = JSON.parse(event.body)
 
   try {
-    const amountInCents = Math.round(amount * 100) // Yoco expects cents, e.g. R250 -> 25000
+    const amountInCents = Math.round(amount * 100)
+    const siteUrl = process.env.SITE_URL.replace(/\/+$/, '')
 
     const res = await fetch('https://payments.yoco.com/api/checkouts', {
       method: 'POST',
@@ -13,9 +14,9 @@ export const handler = async (event) => {
       body: JSON.stringify({
         amount: amountInCents,
         currency: 'ZAR',
-        successUrl: `${process.env.SITE_URL}/booking-success`,
-        cancelUrl: `${process.env.SITE_URL}/booking-cancelled`,
-        failureUrl: `${process.env.SITE_URL}/booking-failed`,
+        successUrl: `${siteUrl}/booking-success`,
+        cancelUrl: `${siteUrl}/booking-cancelled`,
+        failureUrl: `${siteUrl}/booking-failed`,
         metadata: {
           clientName,
           clientNumber,
