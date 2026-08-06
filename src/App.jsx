@@ -11,6 +11,7 @@ import Booking from './components/booking/Booking';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
 import ScrollToTop from './ScrollToTop';
+import BookingSuccess from './components/booking/BookingSuccess';
 
 
 
@@ -44,6 +45,7 @@ return (
     <Route path="/" element={<Home />} />
     <Route path="about" element={<AboutUs />} />
     <Route path="team" element={<Team />} />
+    <Route path="/booking-success" element={<BookingSuccess />} />
     </Routes>
     <Footer/>
    </Router>

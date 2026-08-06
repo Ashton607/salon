@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './Booking.css'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
-import { FaRegCheckCircle } from "react-icons/fa";
 
 const hairstyles = [
   { name: 'Sleek Straight Blowout', price: 'R250' },
@@ -24,16 +23,14 @@ const Booking = () => {
   const [clientName, setClientName] = useState('')
   const [clientNumber, setClientNumber] = useState('')
   const [selectedStyle, setSelectedStyle] = useState(hairstyles[0].name)
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState('idle') // idle | checking | booking | error
   const [errorMessage, setErrorMessage] = useState('')
-  const [receipt, setReceipt] = useState(null)
 
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
   const isCurrentMonth = viewYear === today.getFullYear() && viewMonth === today.getMonth()
 
-  //New function to build the calendar grid for the current view month
   const buildCalendarDays = () => {
     const firstDay = new Date(viewYear, viewMonth, 1).getDay()
     const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate()
@@ -45,13 +42,11 @@ const Booking = () => {
 
   const calendarDays = buildCalendarDays()
 
-  // New function to check if a day is in the past
   const isPastDay = (day) => {
     if (!isCurrentMonth) return viewYear < today.getFullYear() || (viewYear === today.getFullYear() && viewMonth < today.getMonth())
     return day < today.getDate()
   }
 
-  // New functions to navigate months
   const goToPrevMonth = () => {
     if (viewMonth === 0) {
       setViewMonth(11)
@@ -62,7 +57,6 @@ const Booking = () => {
     setSelectedDate(1)
   }
 
-  //proper 12-hour format matching am/pm parsing logic below
   const goToNextMonth = () => {
     if (viewMonth === 11) {
       setViewMonth(0)
@@ -73,7 +67,6 @@ const Booking = () => {
     setSelectedDate(1)
   }
 
-  // Fixed: proper 12-hour format matching am/pm parsing logic below
   const timeSlots = [
     '10:00 am', '10:30 am',
     '11:00 am', '11:30 am',
@@ -84,7 +77,6 @@ const Booking = () => {
     '4:00 pm', '4:30 pm'
   ]
 
-  // New function to build ISO string for selected date and time
   const buildISOTime = (day, time) => {
     const [rawTime, meridiem] = time.split(' ')
     let [hours, minutes] = rawTime.split(':').map(Number)
@@ -105,14 +97,12 @@ const Booking = () => {
     return isoString
   }
 
-  // New function to add one hour to an ISO string
   const addOneHour = (isoString) => {
     const date = new Date(isoString)
     date.setHours(date.getHours() + 1)
     return date.toISOString().replace('Z', '+00:00')
   }
 
-  // New function to handle time selection and availability check
   const handleTimeSelect = async (time) => {
     setSelectedTime(time)
     setStatus('checking')
@@ -147,16 +137,12 @@ const Booking = () => {
     }
   }
 
-  // New function to handle booking
-  const handleBooking = async () => {
+  const handlePayment = async () => {
     if (!clientName || !clientNumber) {
       setErrorMessage('Please enter your name and number.')
       setStatus('error')
       return
     }
-
-    setStatus('booking')
-    setErrorMessage('')
 
     const startTime = buildISOTime(selectedDate, selectedTime)
     if (!startTime) {
@@ -164,18 +150,38 @@ const Booking = () => {
       setStatus('error')
       return
     }
-
     const endTime = addOneHour(startTime)
+
+    setStatus('booking')
+    setErrorMessage('')
+
     const style = hairstyles.find((h) => h.name === selectedStyle)
+    const priceNumber = parseFloat(style.price.replace('R', ''))
 
     try {
-      const res = await fetch('/.netlify/functions/book', {
+      // Final availability check right before sending the client to pay
+      const availRes = await fetch('/.netlify/functions/check-availability', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startTime, endTime })
+      })
+      const availData = await availRes.json()
+
+      if (!availData.available) {
+        setErrorMessage('That slot was just booked. Please choose another.')
+        setStatus('error')
+        return
+      }
+
+      // Create the Yoco checkout, passing booking details through as metadata
+      const res = await fetch('/.netlify/functions/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          serviceName: style.name,
+          amount: priceNumber,
           clientName,
           clientNumber,
+          serviceName: style.name,
           startTime,
           endTime
         })
@@ -183,85 +189,17 @@ const Booking = () => {
       const data = await res.json()
 
       if (!res.ok) {
-        setErrorMessage(data.error || 'Something went wrong. Please try again.')
+        setErrorMessage(data.error || 'Could not start payment.')
         setStatus('error')
         return
       }
 
-      setReceipt({
-        date: `${monthNames[viewMonth]} ${selectedDate}, ${viewYear}`,
-        time: selectedTime,
-        name: clientName,
-        number: clientNumber,
-        style: style.name,
-        price: style.price
-      })
-      setStatus('success')
+      // Redirect the browser to Yoco's hosted payment page
+      window.location.href = data.redirectUrl
     } catch (err) {
-      setErrorMessage('Could not complete booking. Please try again.')
+      setErrorMessage('Could not start payment. Please try again.')
       setStatus('error')
     }
-  }
-
-  // New function to handle payment
-  const handlePayment = async () => {
-  if (!clientName || !clientNumber) {
-    setErrorMessage('Please enter your name and number.')
-    setStatus('error')
-    return
-  }
-
-  setStatus('booking')
-  setErrorMessage('')
-
-  const style = hairstyles.find((h) => h.name === selectedStyle)
-  const priceNumber = parseFloat(style.price.replace('R', ''))
-
-  try {
-    const res = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amount: priceNumber,
-        clientName,
-        clientNumber,
-        serviceName: style.name
-      })
-    })
-    const data = await res.json()
-
-    if (!res.ok) {
-      setErrorMessage(data.error || 'Could not start payment.')
-      setStatus('error')
-      return
-    }
-
-    // Redirect the browser to Yoco's hosted payment page
-    window.location.href = data.redirectUrl
-  } catch (err) {
-    setErrorMessage('Could not start payment. Please try again.')
-    setStatus('error')
-  }
-}
-
-  if (status === 'success' && receipt) {
-    return (
-      <div className="booking-availability">
-        <div className="booking-receipt">
-          <h3>Booking Confirmed<FaRegCheckCircle style={{marginBottom:'-3px', marginLeft:'5px'}} size={23}/></h3>
-          <div className="receipt-box">
-            <div className="receipt-row"><span>Date</span><span>{receipt.date}</span></div>
-            <div className="receipt-row"><span>Time</span><span>{receipt.time}</span></div>
-            <div className="receipt-row"><span>Name</span><span>{receipt.name}</span></div>
-            <div className="receipt-row"><span>Number</span><span>{receipt.number}</span></div>
-            <div className="receipt-row"><span>Hairstyle</span><span>{receipt.style}</span></div>
-            <div className="receipt-row total"><span>Total</span><span>{receipt.price}</span></div>
-            <p className="payment-note">Payment due at appointment — cash or card accepted in salon.</p>
-          </div>
-          <p className="receipt-note">Thanks {receipt.name}, we'll see you then!</p>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -322,41 +260,39 @@ const Booking = () => {
         <h4>Your Details</h4>
 
         <label className="form-label">Name</label>
-          <input
-            type="text"
-            placeholder="Your Name"
-            value={clientName}
-            onChange={(e) => setClientName(e.target.value)}
-            className="booking-input"
-          />
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={clientName}
+          onChange={(e) => setClientName(e.target.value)}
+          className="booking-input"
+        />
 
-          <label className="form-label">Number</label>
-          <input
-            type="tel"
-            placeholder="Your Phone Number"
-            value={clientNumber}
-            onChange={(e) => setClientNumber(e.target.value)}
-            className="booking-input"
-          />
-          
+        <label className="form-label">Number</label>
+        <input
+          type="tel"
+          placeholder="Your Phone Number"
+          value={clientNumber}
+          onChange={(e) => setClientNumber(e.target.value)}
+          className="booking-input"
+        />
+
         <div className="booking-form">
-          <label className="form-label">Hairstyle
-          <select
-            className="booking-input"
-            value={selectedStyle}
-            onChange={(e) => setSelectedStyle(e.target.value)}
-          >
-            {hairstyles.map((h) => (
-              <option key={h.name} value={h.name}>
-                {h.name} 
-              </option>
-            ))}
-          </select>
-          
+          <label className="form-label">
+            Hairstyle
+            <select
+              className="booking-input"
+              value={selectedStyle}
+              onChange={(e) => setSelectedStyle(e.target.value)}
+            >
+              {hairstyles.map((h) => (
+                <option key={h.name} value={h.name}>
+                  {h.name}
+                </option>
+              ))}
+            </select>
           </label>
           <span className="style-price">{hairstyles.find((h) => h.name === selectedStyle)?.price}</span>
-
-          
         </div>
 
         <button
@@ -364,7 +300,7 @@ const Booking = () => {
           onClick={handlePayment}
           disabled={status === 'booking'}
         >
-          {status === 'booking' ? 'Booking...' : 'Confirm Booking'}
+          {status === 'booking' ? 'Redirecting to payment...' : 'Confirm & Pay'}
         </button>
         {status === 'error' && <p className="error-msg">{errorMessage}</p>}
       </div>

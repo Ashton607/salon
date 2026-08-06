@@ -1,5 +1,5 @@
 export const handler = async (event) => {
-  const { amount, clientName, clientNumber, serviceName } = JSON.parse(event.body)
+  const { amount, clientName, clientNumber, serviceName, startTime, endTime } = JSON.parse(event.body)
 
   try {
     const amountInCents = Math.round(amount * 100) // Yoco expects cents, e.g. R250 -> 25000
