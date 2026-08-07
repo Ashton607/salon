@@ -27,12 +27,18 @@ export async function checkAvailability(startTime, endTime) {
   }
 }
 
-export async function createBooking({ serviceName, clientName, clientNumber, startTime, endTime }) {
+export async function createBooking({ serviceName, clientName, clientNumber, startTime, endTime, depositPaid, fullPrice }) {
+  const balanceDue = fullPrice && depositPaid ? (fullPrice - depositPaid).toFixed(2) : null
+
+  const description = balanceDue
+    ? `Booked by ${clientName} (${clientNumber})\nDeposit paid: R${depositPaid}\nBalance due at appointment: R${balanceDue}`
+    : `Booked by ${clientName} (${clientNumber})`
+
   const res = await calendar.events.insert({
     calendarId: CALENDAR_ID,
     requestBody: {
       summary: `${serviceName} - ${clientName}`,
-      description: `Booked by ${clientName} (${clientNumber})`,
+      description,
       start: { dateTime: startTime, timeZone: 'Africa/Johannesburg' },
       end: { dateTime: endTime, timeZone: 'Africa/Johannesburg' }
     }

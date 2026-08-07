@@ -27,35 +27,34 @@ export const handler = async (event) => {
     console.log('Webhook received, type:', payload.type)
 
     if (payload.type === 'payment.succeeded') {
-      const { metadata } = payload.payload
+  const { metadata } = payload.payload
 
-      if (!metadata || !metadata.startTime || !metadata.endTime) {
-        console.error('Missing booking metadata on payment:', metadata)
-        return { statusCode: 200, body: 'OK - but missing metadata' }
-      }
+  if (!metadata || !metadata.startTime || !metadata.endTime) {
+    console.error('Missing booking metadata on payment:', metadata)
+    return { statusCode: 200, body: 'OK - but missing metadata' }
+  }
 
-      const { clientName, clientNumber, serviceName, startTime, endTime } = metadata
+  const { clientName, clientNumber, serviceName, startTime, endTime, depositPaid, fullPrice } = metadata
 
-      // Double-check the slot is still free before booking
-      const isFree = await checkAvailability(startTime, endTime)
+  const isFree = await checkAvailability(startTime, endTime)
 
-      if (!isFree) {
-        console.error('Slot no longer available at webhook time:', startTime)
-        // In a real production setup you'd want to trigger a refund here
-        // and/or notify the owner that a conflict occurred.
-        return { statusCode: 200, body: 'OK - slot conflict, needs manual review' }
-      }
+  if (!isFree) {
+    console.error('Slot no longer available at webhook time:', startTime)
+    return { statusCode: 200, body: 'OK - slot conflict, needs manual review' }
+  }
 
-      const result = await createBooking({
-        serviceName,
-        clientName,
-        clientNumber,
-        startTime,
-        endTime
-      })
+  const result = await createBooking({
+    serviceName,
+    clientName,
+    clientNumber,
+    startTime,
+    endTime,
+    depositPaid,
+    fullPrice
+  })
 
-      console.log('Booking created from webhook:', result.id)
-    }
+  console.log('Booking created from webhook:', result.id)
+}
 
     return { statusCode: 200, body: 'OK' }
   } catch (err) {

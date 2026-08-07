@@ -1,8 +1,8 @@
 export const handler = async (event) => {
-  const { amount, clientName, clientNumber, serviceName, startTime, endTime } = JSON.parse(event.body)
+  const { amount, fullPrice, clientName, clientNumber, serviceName, startTime, endTime } = JSON.parse(event.body)
 
   try {
-    const amountInCents = Math.round(amount * 100)
+    const amountInCents = Math.round(amount * 100) // this is the deposit amount now
     const siteUrl = process.env.SITE_URL.replace(/\/+$/, '')
 
     const res = await fetch('https://payments.yoco.com/api/checkouts', {
@@ -22,7 +22,9 @@ export const handler = async (event) => {
           clientNumber,
           serviceName,
           startTime,
-          endTime
+          endTime,
+          depositPaid: amount,
+          fullPrice
         }
       })
     })

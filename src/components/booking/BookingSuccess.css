@@ -1,0 +1,50 @@
+.bookingsuccess-availability {
+  display: flex;
+  gap: 40px;
+  padding: 3rem;
+  background-color: #6B5A4E;
+  min-height: 650px;
+}
+
+.bookingsuccess-receipt {
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #faf1ee;
+  border-radius: 4px;
+  margin-top: 50px;
+}
+
+.bookingsuccess-receipt h3 {
+  font-size: 1.5rem;
+  color: #3D6B4A;
+  margin-bottom: 44px;
+  border-radius: 6px;
+}
+
+.receiptsuccess-note {
+  margin-top: 20px;
+  color: #3d352f;
+  font-size: 0.98rem;
+  margin-bottom: 20px;
+}
+
+.nextsuccess-btn {
+  width: 80%;
+  margin-top: 44px;
+  padding: 14px 0;
+  background-color: #4A342A;
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: ease-in-out 0.8s;
+}
+
+.nextsuccess-btn:hover {
+  background-color: #2b1d16;
+  width: 100%;
+  transition: ease-in-out 0.3s;
+}

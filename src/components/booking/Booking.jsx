@@ -156,7 +156,8 @@ const Booking = () => {
     setErrorMessage('')
 
     const style = hairstyles.find((h) => h.name === selectedStyle)
-    const priceNumber = parseFloat(style.price.replace('R', ''))
+    const fullPrice = parseFloat(style.price.replace('R', ''))
+    const depositAmount = fullPrice / 2
 
     try {
       // Final availability check right before sending the client to pay
@@ -178,14 +179,15 @@ const Booking = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: priceNumber,
-          clientName,
-          clientNumber,
-          serviceName: style.name,
-          startTime,
-          endTime
-        })
+        amount: depositAmount,
+        fullPrice,
+        clientName,
+        clientNumber,
+        serviceName: style.name,
+        startTime,
+        endTime
       })
+    })
       const data = await res.json()
 
       if (!res.ok) {
@@ -294,6 +296,9 @@ const Booking = () => {
           </label>
           <span className="style-price">{hairstyles.find((h) => h.name === selectedStyle)?.price}</span>
         </div>
+        <p className="deposit-note">
+          A 50% Non-refundable deposit (R{(parseFloat(hairstyles.find((h) => h.name === selectedStyle)?.price.replace('R', '')) / 2).toFixed(2)}) is due now to secure your booking. The remaining balance is payable at your appointment.
+          </p>
 
         <button
           className="next-btn"
