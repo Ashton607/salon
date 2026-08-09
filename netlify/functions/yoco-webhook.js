@@ -50,6 +50,7 @@ export const handler = async (event) => {
     serviceName,
     clientName,
     clientNumber,
+    clientEmail,
     startTime,
     endTime,
     depositPaid,
@@ -62,7 +63,7 @@ export const handler = async (event) => {
 
 try {
   await resend.emails.send({
-    from: 'luxinteractive.co.za', // or your verified domain
+    from: 'bookings@luxinteractive.co.za', // or your verified domain
     to: clientEmail,
     subject: 'Your Booking Confirmation',
     html: `
@@ -76,6 +77,26 @@ try {
   })
 } catch (emailErr) {
   console.error('Failed to send client confirmation email:', emailErr.message)
+}
+
+// Notify the owner too
+try {
+  await resend.emails.send({
+    from: 'bookings@luxinteractive.co.za',
+    to: process.env.OWNER_EMAIL,
+    subject: `New Booking: ${clientName} - ${serviceName}`,
+    html: `
+      <h2>New Booking Received</h2>
+      <p><strong>Client:</strong> ${clientName}</p>
+      <p><strong>Number:</strong> ${clientNumber}</p>
+      <p><strong>Email:</strong> ${clientEmail}</p>
+      <p><strong>Service:</strong> ${serviceName}</p>
+      <p><strong>Date/Time:</strong> ${new Date(startTime).toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })}</p>
+      <p><strong>Deposit paid:</strong> R${depositPaid} — Balance due: R${(fullPrice - depositPaid).toFixed(2)}</p>
+    `
+  })
+} catch (emailErr) {
+  console.error('Failed to send owner notification email:', emailErr.message)
 }
   
 }
