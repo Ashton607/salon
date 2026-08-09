@@ -5,8 +5,8 @@ import { IoIosMail } from "react-icons/io";
 import emailjs from '@emailjs/browser'
 
 const tabs = [
-  { key: 'hair', label: 'Hair', color: 'brown' },
-  { key: 'nails', label: 'Nails', color: 'pink' },
+  { key: 'hair', label: 'General Enquiry', color: 'brown' },
+  { key: 'nails', label: 'Cancel Appointment', color: 'pink' },
 ]
 
 const ContactForm = ({ color, service }) => {
@@ -125,8 +125,8 @@ const infoItems = [
       <FaMapMarkerAlt/>
     ),
     label: 'Address',
-    line1: '65 Schroder St, Kimberley, 8730',
-    line2: 'Ground floor, next to the pharmacy',
+    line1: 'Vaal Oranje Laan, Douglas, 8730',
+    line2: 'Green Complex',
   },
   {
     icon: (
@@ -141,7 +141,7 @@ const infoItems = [
       <IoIosMail/>
     ),
     label: 'Email',
-    line1: 'duwayne@gmail.com',
+    line1: 'salon@gmail.com',
     line2: 'We reply within a few hours',
   },
   {
@@ -164,11 +164,11 @@ const Contact = () => {
         <span className="contact-badge">get in touch</span>
         <h1 className="contact-title">
           <span className="line1">Get in Touch.</span>
-          <span className="line2">With Your Local Stylist in Kimberley</span>
+          <span className="line2">With Your Local Stylist in Douglas</span>
         </h1>
         <p className="contact-subtitle">
           Whether you need advice on a new hair color, a quick cut, or custom nail art, 
-          I’m here to help you look and feel your absolute best. Contact my salon in Kimberley Nothern Cape 
+          I’m here to help you look and feel your absolute best. Contact my salon in Douglas Northern Cape 
           today to discuss your ideas and enquiries.
         </p>
 

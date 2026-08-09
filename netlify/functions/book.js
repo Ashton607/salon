@@ -19,7 +19,7 @@ export const handler = async (event) => {
 
     try {
       await resend.emails.send({
-        from: 'onboarding@resend.dev', // swap for your verified domain later
+        from: 'luxinteractive.co.za', // swap for your verified domain later
         to: process.env.OWNER_EMAIL,
         subject: `New Booking: ${clientName} - ${serviceName}`,
         html: `

@@ -12,6 +12,7 @@ import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
 import ScrollToTop from './ScrollToTop';
 import BookingSuccess from './components/booking/BookingSuccess';
+import CancelBooking from './components/booking/CancelBooking';
 
 
 
@@ -46,6 +47,7 @@ return (
     <Route path="about" element={<AboutUs />} />
     <Route path="team" element={<Team />} />
     <Route path="/booking-success" element={<BookingSuccess />} />
+    <Route path="/cancel-booking" element={<CancelBooking />} />
     </Routes>
     <Footer/>
    </Router>

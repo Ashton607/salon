@@ -30,18 +30,18 @@ const [showMore, setShowMore] = useState(false)
         <span className="services-badge">our services</span>
         <h1 className="services-title">
           <span className="line1">Haircare/Makeup/Nail</span>
-          <span className="line2">& Skin Care in Kimberley</span>
+          <span className="line2">& Skin Care in Douglas</span>
         </h1>
         <p className="services-subtitle">
         From personalized haircare and flawless makeup application to long-lasting gel nails 
         and rejuvenating skincare, I am dedicated to bringing out your absolute best look. 
-        Explore my full range of tailored beauty treatments right here in Kimberley, designed 
+        Explore my full range of tailored beauty treatments right here in Douglas, designed 
         to help you feel confident, radiant, and fully pampered.</p>
 
  <section className="services-container">
 
   {/* Row 1 - Haircare (always visible) */}
-  <div className="category-badge">haircare</div>
+  <div className="category-badge">hair</div>
   <hr className="service-divider" />
   <div className="service-grid-row">
     <div className="service-tile">

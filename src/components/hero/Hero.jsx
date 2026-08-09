@@ -41,7 +41,7 @@ useEffect(() => {
 
     <h1 className="hero-title">
           <span className="line1">Complete Hair, Nails, Skincare</span>
-          <span className="line2">& Makeup Studio in Kimberley</span>
+          <span className="line2">& Makeup Studio in Douglas</span>
     </h1>
 
     <p className="hero-subtitle">

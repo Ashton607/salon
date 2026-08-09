@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="footer-top">
 
         <div className="footer-brand">
-          <h2 className="footer-logo">Duwayne's Hair & Beauty Salon</h2>
+          <h2 className="footer-logo">Salon</h2>
           <p className="footer-tagline">
-            Your local hair & nail beauty experts in Kimberley, Northern Cape.
+            Your local hair & nail beauty experts in Douglas, Northern Cape.
           </p>
           <div className="footer-socials">
             <a href="#" aria-label="Instagram"><FaInstagram /></a>
@@ -33,7 +33,7 @@ const Footer = () => {
           <h4>Contact</h4>
           <div className="footer-info-row">
             <IoLocationOutline />
-            <span>65 Schroder Street, Upington, 8801</span>
+            <span>Douglas 8730</span>
           </div>
           <div className="footer-info-row">
             <IoCallOutline />
@@ -48,7 +48,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Duwayne's Hair & Beauty Salon. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Salon. All rights reserved.</p>
         <div className="footer-legal">
           <a href="#">Privacy Policy</a>
           <span className="divider">|</span>

@@ -29,7 +29,7 @@ const Testimonials = () => {
         <span className="line1">What Our Clients Say.</span>
         <span className="line2">Happy Salon Clients.</span>
     </h1>
-    <p className="testimonials-subtitle">Read real reviews from our valued clients in Kimberley Northern Cape. 
+    <p className="testimonials-subtitle">Read real reviews from our valued clients in Douglas Northern Cape. 
         From dramatic hair transformations and vibrant coloring to stunning nail art and long lasting 
         manicures, see why locals trust us for all their beauty needs.</p>
     

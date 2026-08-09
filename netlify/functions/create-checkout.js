@@ -1,5 +1,5 @@
 export const handler = async (event) => {
-  const { amount, fullPrice, clientName, clientNumber, serviceName, startTime, endTime } = JSON.parse(event.body)
+  const { amount, fullPrice, clientName, clientNumber,clientEmail, serviceName, startTime, endTime } = JSON.parse(event.body)
 
   try {
     const amountInCents = Math.round(amount * 100) // this is the deposit amount now
@@ -20,6 +20,7 @@ export const handler = async (event) => {
         metadata: {
           clientName,
           clientNumber,
+          clientEmail,
           serviceName,
           startTime,
           endTime,

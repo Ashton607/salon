@@ -25,6 +25,7 @@ const Booking = () => {
   const [selectedStyle, setSelectedStyle] = useState(hairstyles[0].name)
   const [status, setStatus] = useState('idle') // idle | checking | booking | error
   const [errorMessage, setErrorMessage] = useState('')
+  const [clientEmail, setClientEmail] = useState('')
 
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -138,8 +139,8 @@ const Booking = () => {
   }
 
   const handlePayment = async () => {
-    if (!clientName || !clientNumber) {
-      setErrorMessage('Please enter your name and number.')
+    if (!clientName || !clientNumber || !clientEmail) {
+      setErrorMessage('Please enter your name, number and email.')
       setStatus('error')
       return
     }
@@ -183,6 +184,7 @@ const Booking = () => {
         fullPrice,
         clientName,
         clientNumber,
+        clientEmail,
         serviceName: style.name,
         startTime,
         endTime
@@ -264,7 +266,7 @@ const Booking = () => {
         <label className="form-label">Name</label>
         <input
           type="text"
-          placeholder="Your Name"
+          placeholder="Full Name"
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
           className="booking-input"
@@ -273,10 +275,19 @@ const Booking = () => {
         <label className="form-label">Number</label>
         <input
           type="tel"
-          placeholder="Your Phone Number"
+          placeholder="Phone Number"
           value={clientNumber}
           onChange={(e) => setClientNumber(e.target.value)}
           className="booking-input"
+        />
+
+        <label className="form-label">Email</label>
+        <input
+        type="email"
+        placeholder="Email Address"
+        value={clientEmail}
+        onChange={(e) => setClientEmail(e.target.value)}
+        className="booking-input"
         />
 
         <div className="booking-form">

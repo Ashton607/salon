@@ -1,0 +1,148 @@
+.cancel-booking-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  background-color: #FBE1CC;
+}
+
+.cancel-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #FFFFFF;
+  border: 1px solid #E5DED5;
+  border-radius: 10px;
+  padding: 48px 40px;
+  text-align: center;
+}
+
+.cancel-card h3 {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  color: #2B1F1A;
+  margin: 0 0 20px;
+}
+
+.cancel-card .booking-summary {
+  font-weight: 600;
+  color: #2B1F1A;
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+
+.cancel-card .booking-time {
+  color: #6B5A4E;
+  font-size: 0.9rem;
+  margin: 0 0 28px;
+}
+
+.cancel-btn {
+  width: 100%;
+  padding: 14px 0;
+  background-color: #B23A3A;
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background-color: #8f2d2d;
+}
+
+.cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-status-msg {
+  font-size: 0.95rem;
+  color: #4A342A;
+  line-height: 1.6;
+}
+
+.cancel-status-msg.error {
+  color: #B23A3A;
+}
+
+.cancel-status-msg.success {
+  color: #3D6B4A;
+}
+
+.cancel-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+
+/* ===== TABLET (≤768px) ===== */
+@media (max-width: 768px) {
+  .cancel-booking-page {
+    padding: 3rem 1.2rem;
+    min-height: 60vh;
+  }
+
+  .cancel-card {
+    padding: 40px 32px;
+    max-width: 400px;
+  }
+
+  .cancel-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .cancel-card .booking-summary {
+    font-size: 0.95rem;
+  }
+
+  .cancel-card .booking-time {
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .cancel-btn {
+    padding: 12px 0;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ===== SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+  .cancel-booking-page {
+    padding: 2.5rem 1rem;
+  }
+
+  .cancel-card {
+    padding: 32px 24px;
+    border-radius: 8px;
+  }
+
+  .cancel-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+  }
+
+  .cancel-card .booking-summary {
+    font-size: 0.9rem;
+  }
+
+  .cancel-card .booking-time {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .cancel-btn {
+    padding: 11px 0;
+    font-size: 0.85rem;
+  }
+
+  .cancel-status-msg {
+    font-size: 0.85rem;
+  }
+}

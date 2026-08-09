@@ -1,5 +1,8 @@
 import crypto from 'crypto'
 import { checkAvailability, createBooking } from './calendarService.js'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const handler = async (event) => {
   const signatureHeader = event.headers['webhook-signature']
@@ -27,14 +30,14 @@ export const handler = async (event) => {
     console.log('Webhook received, type:', payload.type)
 
     if (payload.type === 'payment.succeeded') {
-  const { metadata } = payload.payload
+    const { metadata } = payload.payload
 
   if (!metadata || !metadata.startTime || !metadata.endTime) {
     console.error('Missing booking metadata on payment:', metadata)
     return { statusCode: 200, body: 'OK - but missing metadata' }
   }
 
-  const { clientName, clientNumber, serviceName, startTime, endTime, depositPaid, fullPrice } = metadata
+  const { clientName, clientNumber, clientEmail, serviceName, startTime, endTime, depositPaid, fullPrice } = metadata
 
   const isFree = await checkAvailability(startTime, endTime)
 
@@ -52,8 +55,29 @@ export const handler = async (event) => {
     depositPaid,
     fullPrice
   })
-
   console.log('Booking created from webhook:', result.id)
+
+  const cancelLink = `${process.env.SITE_URL}/cancel-booking?token=${result.cancellationToken}`
+
+
+try {
+  await resend.emails.send({
+    from: 'luxinteractive.co.za', // or your verified domain
+    to: clientEmail,
+    subject: 'Your Booking Confirmation',
+    html: `
+      <h2>Booking Confirmed</h2>
+      <p>Hi ${clientName},</p>
+      <p>Your <strong>${serviceName}</strong> appointment is booked for
+      ${new Date(startTime).toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })}.</p>
+      <p>Deposit paid: R${depositPaid} — balance due at appointment: R${(fullPrice - depositPaid).toFixed(2)}</p>
+      <p>Need to cancel? <a href="${cancelLink}">Click here</a>.</p>
+    `
+  })
+} catch (emailErr) {
+  console.error('Failed to send client confirmation email:', emailErr.message)
+}
+  
 }
 
     return { statusCode: 200, body: 'OK' }
